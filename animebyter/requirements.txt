@@ -1,0 +1,4 @@
+feedparser
+quart
+aiohttp
+pickledb

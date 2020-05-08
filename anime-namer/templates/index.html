@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime namer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+        ul li:hover {
+            background: #ddd;
+        }
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+            z-index: 99;
+        }
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Anime namer</h1>
+    <div>
+        <h2>Pending:</h2>
+        <ul>
+            {% for i in pending %}
+            <li>
+                <a href="{{ BASE_URL }}/{{ i.id }}">{{ i.dl_path }}</a>
+                <a href="{{ BASE_URL }}/delete/{{ i.id }}"><span class="close">X</span></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+</html>

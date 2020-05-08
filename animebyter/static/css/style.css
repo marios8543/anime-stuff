@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th {
+    padding: 7px;
+}
+
+#topbar {
+    width: 100%;
+    height: 20%;
+}
+
+#watching {
+    display: inline-block;
+}
+
+#airing {
+    float:left;
+    margin-right: 150px;
+}
+
+.text {
+    width: 400px;
+    overflow-wrap: break-word;
+}
+
+input {
+    width: 200px;
+}
+
+form {
+    padding-bottom: 5px;
+}

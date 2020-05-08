@@ -1,0 +1,59 @@
+version: '3'
+services:
+  qbittorrent:
+    build: .
+    container_name: qbittorrent
+    networks:
+      - anime-stack
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Athens
+      - UMASK_SET=022
+      - WEBUI_PORT=8080
+    volumes:
+      - ./config:/config
+      - ./Anime:/Anime
+    restart: unless-stopped
+
+    anime-namer:
+      build: ./anime-namer
+      container_name: anime-namer
+      networks:
+          - anime-stack
+      ports:
+          - 9010:9010
+      environment:
+          - JF_DIR=/Anime/AnimeLibrary
+          - FLAG_DIR=/Anime/_flags
+          - BASE_URL=<YOUR_BASE_URL>
+          - GOTIFY_URL=<YOUR_GOTIFY_URL>
+      volumes:
+          - /mnt/Storage/Anime:/Anime
+      restart: unless-stopped
+
+    animebyter:
+      build: ./animebyter
+      container_name: animebyter
+      ports:
+        - 5000:5000
+      environment:
+          - qbit_url=http://qbittorrent:8080
+          - ab_key=<YOUR_ANIMEBYTES_TOKEN>
+          - base_url=<YOUR_BASE_URL>
+          - gotify_url=<YOUR_GOTIFY_URL>
+          - database=/db/animebyter.json
+          - LOGLEVEL=INFO
+      volumes:
+          - ./db:/db
+      networks:
+          - anime-stack
+      restart: unless-stopped
+
+networks:
+  anime-stack:
+    driver: bridge
