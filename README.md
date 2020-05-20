@@ -43,7 +43,7 @@ Now we get to the interesting stuff. You may have noticed this little script cal
 - If our show doesn't exist in there (ex in the case of an OVA-only series like Hellsing Ultimate), expand the search to all types.
 - Finally find the index of our show in the list of prequels. Add 1 and there's your season!
 
-You can test this component out [here](https://tzatzikiweeb.moe/season-finder)
+You can test this component out [here](https://tzatzikiweeb.moe/season-finder)  
 Now obviously this isn't foolproof and sometimes I have to manually define the title and season of shows. Keep reading to find that out...
 
 ## jellyfin-namer.sh
